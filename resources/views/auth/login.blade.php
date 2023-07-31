@@ -25,25 +25,18 @@
                         </button>
                     </div>
                 @endif
-                <form method="POST" action="#" role="form">
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span class="alert-text">{{ session('success') }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                @endif
+                <form method="POST" action="{{route('login')}}" role="form">
                     @csrf
 
-{{--                    <div class="form-group required">--}}
-{{--                        <label class="form-control-label">{{__('Username')}}</label>--}}
-{{--                        <div class="input-group input-group-merge">--}}
-{{--                            <div class="input-group-prepend">--}}
-{{--                                <span class="input-group-text"><i class="fas fa-user"></i></span>--}}
-{{--                            </div>--}}
-
-{{--                            <input id="username" type="text" placeholder="{{ __('Username') }}" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="nachname" autofocus>--}}
-{{--                            @error('username')--}}
-{{--                            <span class="invalid-feedback" role="alert">--}}
-{{--                                <strong>{{ $message }}</strong>--}}
-{{--                            </span>--}}
-{{--                            @enderror--}}
-
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <div class="form-group required">
                         <label class="form-control-label">{{__('Email')}}</label>
@@ -51,7 +44,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
                             </div>
-                            <input id="email" type="email" placeholder="{{ __('E-Mail') }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" placeholder="{{ __('E-Mail') }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -68,7 +61,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input id="password"  type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password"  type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -77,24 +70,6 @@
                             @enderror
                         </div>
                     </div>
-{{--                    <div class="">--}}
-{{--                        <div id="password-strength"></div>--}}
-{{--                    </div>--}}
-{{--                    <div class="form-group required">--}}
-{{--                        <label class="form-control-label">{{__('Confirm password')}}</label>--}}
-{{--                        <div class="input-group input-group-merge input-group-alternative">--}}
-{{--                            <div class="input-group-prepend">--}}
-{{--                                <span class="input-group-text"><i class="fas fa-key"></i></span>--}}
-{{--                            </div>--}}
-{{--                            <input id="password-confirm" type="password" class="form-control" placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    @error('password_confirmation')--}}
-{{--                    <span class="error invalid-password_confirmation text-danger" role="alert">--}}
-{{--                        <strong>{{ $message }}</strong>--}}
-{{--                    </span>--}}
-{{--                    @enderror--}}
 
                     <div class="row my-4">
                         <div class="col-12">
@@ -107,12 +82,9 @@
                         </div>
                     </div>
 
-{{--                    <div>--}}
-{{--                        @include('auth.role')--}}
-{{--                    </div>--}}
 
                     <div class="mt-4">
-                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-register">{{ __('REGISTRIEREN') }}</button>
+                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-register">{{ __('login') }}</button>
                     </div>
                 </form>
             </div>

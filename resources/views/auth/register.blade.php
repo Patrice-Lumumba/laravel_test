@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @php
-    $title_page= "Se connecter";
+    $title_page= "S'enregistrer'";
 @endphp
 
 @section('content')
@@ -36,7 +36,7 @@
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
 
-                            <input id="username" type="text" placeholder="{{ __('Username') }}" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" >
+                            <input id="username" type="text" placeholder="{{ __('Username') }}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" >
                             @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

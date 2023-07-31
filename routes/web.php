@@ -19,7 +19,34 @@
         return view('welcome');
     });
 
+//    Route::controller(RegisterController::class)->group(function () {
+//
+//        Route::get('login', [LoginController::class, 'index'])->name("login");
+//        Route::post('/login', [LoginController::class, 'index'])->middleware(['guest']);
+//
+//        Route::get('/register', [RegisterController::class, 'store'])->middleware(['guest'])
+//            ->name('register');
+//        Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+//
+//        Route::get('/register/logout', 'logout')->middleware('auth')->name('logout');
+//
+//    });
+
     Route::get('login', [LoginController::class, 'index'])->name("login");
+    Route::post('/login', [LoginController::class, 'store'])->middleware(['guest']);
+
     Route::get('/register', [RegisterController::class, 'index'])->middleware(['guest'])
         ->name('register');
     Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
+    Route::get('dashboard', function (){
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/profile', [App\Http\Controllers\Controller::class, 'profile'])->name('profile');
+
+//    Route::middleware('auth')->group(function () {
+//        Route::get('dashboard', function (){
+//            return view('dashboard');
+//        })->name('dashboard');
+//        Route::get('/profile', [App\Http\Controllers\Controller::class, 'profile'])->name('profile');
+//    });

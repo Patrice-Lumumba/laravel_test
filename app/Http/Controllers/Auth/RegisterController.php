@@ -3,6 +3,8 @@
     namespace App\Http\Controllers\Auth;
 
     use App\Http\Controllers\Controller;
+    use App\Models\User;
+    use Illuminate\Auth\Events\Registered;
     use Illuminate\Http\Request;
 
 
@@ -16,18 +18,34 @@
         public function store(Request $request)
         {
             $messages = [
-                'username.required' => 'Username is required',
+                'name.required' => 'Username is required',
                 'email.required' => 'Email is required',
                 'password.required' => 'Password is required',
-                'password_confirmation.required' => 'Password and Confirm Password is required',
-//                'email.required' => 'Email is required',
+                'password.confirmed.required' => 'Password and Confirm Password is required',
             ];
             $request->validate([
-                'username' => 'required|string|max:255',
+                'name' => 'required|string|max:255',
                 'email' => 'required|string|max:255',
-                'password' => 'required|string|max:255',
-                'password_confirmation' => 'required|string|max:255',
+                'password' => ['required', 'confirmed'],
+                'password.confirmed' => 'Les deux mots de passes ne coincident pas',
 
-            ],$messages);
+            ], $messages);
+
+
+            $user = new User();
+
+            $user->password = $request['password'];
+            $user->email =  $request['email'];
+            $user->name =  $request['name'];
+
+            $new_user = $user->save();
+
+            if ($new_user) {
+                return redirect()->route('login')->with('success', __('Enregitrement réussit'));
+            }
+
+
+
+//
         }
     }
