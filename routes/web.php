@@ -1,6 +1,8 @@
 <?php
 
     use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Auth\LoginController;
 
@@ -19,19 +21,6 @@
         return view('welcome');
     });
 
-//    Route::controller(RegisterController::class)->group(function () {
-//
-//        Route::get('login', [LoginController::class, 'index'])->name("login");
-//        Route::post('/login', [LoginController::class, 'index'])->middleware(['guest']);
-//
-//        Route::get('/register', [RegisterController::class, 'store'])->middleware(['guest'])
-//            ->name('register');
-//        Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
-//
-//        Route::get('/register/logout', 'logout')->middleware('auth')->name('logout');
-//
-//    });
-
     Route::get('login', [LoginController::class, 'index'])->name("login");
     Route::post('/login', [LoginController::class, 'store'])->middleware(['guest']);
 
@@ -42,11 +31,13 @@
     Route::get('dashboard', function (){
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/profile', [App\Http\Controllers\Controller::class, 'profile'])->name('profile');
 
-//    Route::middleware('auth')->group(function () {
-//        Route::get('dashboard', function (){
-//            return view('dashboard');
-//        })->name('dashboard');
-//        Route::get('/profile', [App\Http\Controllers\Controller::class, 'profile'])->name('profile');
-//    });
+Route::controller(ProductController::class)->prefix('products')->group(function () {
+    Route::get('', 'index')->name('products');
+    Route::get('create', 'create')->name('products.create');
+    Route::post('store', 'store')->name('products.store');
+    Route::get('show/{id}', 'show')->name('products.show');
+    Route::get('edit/{id}', 'edit')->name('products.edit');
+    Route::put('edit/{id}', 'update')->name('products.update');
+    Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
+});

@@ -16,12 +16,13 @@
 <body id="page-top">
 
 <div id="wrapper">
-    @include('layouts.sidebar')
+{{--    @include('layouts.header')--}}
+{{--    @include('layouts.sidebar')--}}
 
     <div id="content-wrapper" class="d-flex flex-column">
 
         <div id="content">
-            @include('layouts.navbar')
+{{--            @include('layouts.navbar')--}}
         </div>
         <div class="container-fluid">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">

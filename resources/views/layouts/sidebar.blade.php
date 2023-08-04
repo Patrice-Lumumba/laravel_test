@@ -1,39 +1,42 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a href="index.html" class="sidebar-brand d-flex align-items-center justify-content-center">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin Panel</div>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
     </a>
 
+    <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a href="{{'dashboard'}}" class="nav-link">
+        <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <spa>Dashboard</spa>
-        </a>
+            <span>Dashboard</span></a>
     </li>
 
     <li class="nav-item">
-        <a href="" class="nav-link">
+        <a class="nav-link" href="{{ route('products') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <spa>Product</spa>
-        </a>
+            <span>Product</span></a>
     </li>
 
     <li class="nav-item">
-        <a href="" class="nav-link">
+        <a class="nav-link" href="/profile">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <spa>Profile</spa>
-        </a>
+            <span>Profile</span></a>
     </li>
 
+    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <div class="sidebar-divider d-none d-md-inline">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-</ul>
 
+</ul>
