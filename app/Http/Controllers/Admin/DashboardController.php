@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Admin;
 
     use App\Http\Controllers\Controller;
+    use App\Models\User;
 
 
     class DashboardController extends Controller
@@ -15,7 +16,8 @@
 
         function index()
         {
-            return view('dashboard');
+            $users = User::with('roles')->where('name', 'admin')->get();
+            return view('dashboard', compact('users'));
         }
 
 

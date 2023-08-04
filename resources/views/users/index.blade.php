@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('title', 'Home Product')
+@section('title', 'List Of Users')
 
 @section('contents')
     <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mb-0">List Product</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
+        <h1 class="mb-0">List Of Users</h1>
+        <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
     </div>
     <hr />
     @if(Session::has('success'))
@@ -17,27 +17,31 @@
         <thead class="table-primary">
         <tr>
             <th>#</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Product Code</th>
-            <th>Description</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Check In</th>
+            <th>Check Out</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>+
-        @if($product->count() > 0)
-            @foreach($product as $rs)
+        @if($user->count() > 0)
+            @foreach($user as $rs)
                 <tr>
                     <td class="align-middle">{{ $loop->iteration }}</td>
-                    <td class="align-middle">{{ $rs->title }}</td>
-                    <td class="align-middle">{{ $rs->price }}</td>
-                    <td class="align-middle">{{ $rs->product_code }}</td>
-                    <td class="align-middle">{{ $rs->description }}</td>
+                    <td class="align-middle">{{ $rs->name }}</td>
+                    <td class="align-middle">{{ $rs->email }}</td>
+                    <td class="align-middle">{{ $rs->tel }}</td>
+                    <td class="align-middle">{{ $rs->check_in }}</td>
+                    <td class="align-middle">{{ $rs->check_out }}</td>
+                    <td class="align-middle">{{ $rs->role }}</td>
                     <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                            <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
+                            <a href="{{ route('users.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
+                            <a href="{{ route('users.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('users.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger m-0">Delete</button>

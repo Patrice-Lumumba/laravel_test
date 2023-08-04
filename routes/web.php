@@ -44,6 +44,16 @@
         Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
     });
 
+    Route::controller(UserController::class)->prefix('users')->group(function () {
+        Route::get('', 'index')->name('users');
+        Route::get('create', 'create')->name('users.create');
+        Route::post('store', 'store')->name('users.store');
+        Route::get('show/{id}', 'show')->name('users.show');
+        Route::get('edit/{id}', 'edit')->name('users.edit');
+        Route::put('edit/{id}', 'update')->name('users.update');
+        Route::delete('destroy/{id}', 'destroy')->name('users.destroy');
+    });
+
 
     Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 

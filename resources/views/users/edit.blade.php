@@ -1,48 +1,51 @@
-<?php
-?>
+@extends('layouts.master')
 
-@include('layouts.app')
+@section('title', 'Edit Users')
 
-<div class="container">
-    <h2>Edit User</h2>
+@section('contents')
+    <h1 class="mb-0">Edit Product</h1>
+    <hr />
+    <form action="{{ route('users.update', $user->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $user->name }}" >
+            </div>
 
-    </a>
-    <div class="row">
-        <div class="col">
-            <form action="/user-update/{{$user->id}}" method="post">
-                <div class="form-group">
-                    <label for=""> Full Name </label>
-                    <input type="text" class="form-control" placeholder="Enter First Name" required value="{{$user->name}}>
-                </div>
-                <div class="form-group">
-                    <label for=""> Email </label>
-                    <input type="text" class="form-control" placeholder="Enter Email" required value="{{$user->email}}">
-                </div>
-                <div class="form-group">
-                    <label for=""> Phone number </label>
-                    <input type="text" class="form-control" placeholder="Enter Phone number" required value="{{$user->tel}}">
-                </div>
-
-                <div class="form-group">
-                    <label for=""> Check In </label>
-                    <input type="datetime-local" class="form-control" placeholder="000000" required value="{{$user->check_in}}">
-                </div>
-
-                <div class="form-group">
-                    <label for=""> Check Out </label>
-                    <input type="datetime-local" class="form-control" placeholder="000000" required value="{{$user->check_out}}">
-                </div>
-
-                <div class="form-group">
-                    <label for=""> Rôle </label>
-                    <input type="text" name="contact" class="form-control" placeholder="Rôle" required value="{{$user->role}}">
-                </div>
-
-                <button class="btn btn-primary" type="submit" name="insert"> Update Data </button>
-
-                <a href="/users" class="btn btn-danger"> CANCEL</a>
-            </form>
+            <div class="col mb-3">
+                <label class="form-label">Email</label>
+                <input type="text" name="email" class="form-control" placeholder="Email" value="{{ $user->email }}" >
+            </div>
         </div>
-    </div>
 
-</div>
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" name="tel" class="form-control" value="{{ $user->tel }}" >
+            </div>
+            <div class="col mb-3">
+                <label class="form-label">Arrival</label>
+                <input type="datetime-local" class="form-control" name="chek_in" placeholder="Arrival" >{{ $user->chek_in }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+                <label class="form-label">Departure</label>
+                <input type="datetime-local" name="chek_out" class="form-control" placeholder="Departure" value="{{ $user->chek_out }}" >
+            </div>
+            <div class="col mb-3">
+                <label class="form-label">Status</label>
+                <input type="text" class="form-control" value="{{ $user->role }}" name="role">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid">
+                <button class="btn btn-warning">Update</button>
+            </div>
+        </div>
+    </form>
+@endsection

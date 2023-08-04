@@ -1,48 +1,42 @@
-<?php
-?>
+@extends('layouts.master')
 
-    @include('layouts.app')
+@section('title', 'Create User')
 
-    <div class="container">
-        <h2>New User</h2>
-
-        </a>
-        <div class="row">
+@section('contents')
+    <h1 class="mb-0">Add User</h1>
+    <hr />
+    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="row mb-3">
             <div class="col">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="/save-user"> Full Name </label>
-                        <input type="text" name="fname" class="form-control" placeholder="Enter First Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for=""> Email </label>
-                        <input type="text" name="lname" class="form-control" placeholder="Enter Last Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for=""> Phone number </label>
-                        <input type="text" name="contact" class="form-control" placeholder="Enter Phone number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for=""> Check In </label>
-                        <input type="datetime-local" name="contact" class="form-control" placeholder="000000" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for=""> Check Out </label>
-                        <input type="datetime-local" name="contact" class="form-control" placeholder="000000" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for=""> Rôle </label>
-                        <input type="text" name="contact" class="form-control" placeholder="Rôle" required>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit" name="insert"> Save Data </button>
-
-                    <a href="/users" class="btn btn-danger"> CANCEL</a>
-                </form>
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="col">
+                <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <input type="text" name="tel" class="form-control" placeholder="Phone Number">
+            </div>
+            <div class="col">
+                <input type="datetime-local" name="check_in" class="form-control" placeholder="Arrival">
             </div>
         </div>
 
-    </div>
+        <div class="row mb-3">
+            <div class="col">
+                <input type="datetime-local" name="check_out" class="form-control" placeholder="Departure">
+            </div>
+            <div class="col">
+                <input type="text" name="role" class="form-control" placeholder="Status">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+@endsection

@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Auth;
 
     use App\Http\Controllers\Controller;
+    use App\Models\Role;
     use App\Models\User;
     use Illuminate\Auth\Events\Registered;
     use Illuminate\Http\Request;
@@ -37,6 +38,8 @@
             $user->password = $request['password'];
             $user->email =  $request['email'];
             $user->name =  $request['name'];
+
+            $user->getRoleNames();
 
             $new_user = $user->save();
 
