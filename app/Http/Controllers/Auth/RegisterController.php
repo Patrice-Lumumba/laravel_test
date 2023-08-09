@@ -39,11 +39,11 @@
             $user->email =  $request['email'];
             $user->name =  $request['name'];
 
-            $user->getRoleNames();
+//            $user->getRoleNames();
+//
+//            $new_user = $user->save();
 
-            $new_user = $user->save();
-
-            if ($new_user) {
+            if ($user) {
                 return redirect()->route('login')->with('success', __('Enregitrement réussit'));
             }
 

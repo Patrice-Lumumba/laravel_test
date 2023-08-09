@@ -40,18 +40,18 @@
         public function store(Request $request)
         {
             //
-            /*User::create($request->all());
+            User::create($request->all());
 
-            return redirect()->route('users')->with('success', 'User added successfully');*/
+            return redirect()->route('users')->with('success', 'User added successfully');
             $user = new User();
 
-            $user->tel = $request['tel'];
+//            $user->tel = $request['tel'];
             $user->email =  $request['email'];
             $user->name =  $request['name'];
 
-            $new_user = $user->save();
+//             $user->save();
 
-            if ($new_user) {
+            if ($user) {
                 return redirect()->route('users')->with('success', 'User added successfully');
             }
 

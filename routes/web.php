@@ -3,7 +3,8 @@
     use App\Http\Controllers\Admin\DashboardController;
     use App\Http\Controllers\Auth\RegisterController;
     use App\Http\Controllers\ProductController;
-    use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Auth\LoginController;
 
@@ -60,3 +61,16 @@
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     });
 
+    //  ROOM
+
+Route::controller(RoomController::class)->prefix('room')->group(function () {
+    Route::get('', 'index')->name('room');
+    Route::get('create', 'create')->name('rooms.create');
+    Route::post('store', 'store')->name('rooms.store');
+    Route::get('show/{room}', 'show')->name('rooms.show');
+    Route::get('edit/{room}', 'edit')->name('rooms.edit');
+    Route::put('edit/{room}', 'update')->name('rooms.update');
+    Route::delete('destroy/{id}', 'destroy')->name('rooms.destroy');
+});
+
+//Route::get('', 'index')->name('room');
