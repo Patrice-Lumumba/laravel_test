@@ -25,19 +25,15 @@
             </div>
             <div class="col">
                 <label class="form-label">Type: </label>
-                <select class="form-control" name="type">
-                    <option value=""></option>
-                    <option value="">Ventilé</option>
-                    <option value="">Climatisé</option>
-                </select>
+                <input type="text" class="form-control" name="type">
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <input type="text" name="prix" class="form-control" placeholder="Price of the room">
+                <input type="text" name="price" class="form-control" placeholder="Price of the room">
             </div>
             <div class="col">
-                <input type="checkbox" class="form-check-input" name="is_enable">
+                <input type="checkbox" class="form-check-input" value="1" {{ old('is_enable') == 1 ? 'checked' : '' }} name="is_enable">
                 <label class="form-check-label">Chambre disponible</label>
             </div>
         </div>

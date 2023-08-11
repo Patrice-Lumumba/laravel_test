@@ -21,17 +21,21 @@
             <th>Image</th>
             <th>Type</th>
             <th>Price</th>
-            <th>Is_enable</th>
+            <th>Availability</th>
             <th>Action</th>
         </tr>
 
         @foreach($room as $rm)
             <tr>
-                <td>{{$rm->id}}</td>
+                <td>{{$loop->iteration}}</td>
                 <td><img src="/image/{{$rm->image}}" alt="image" width="100px" height="100px"></td>
                 <td>{{$rm->type}}</td>
-                <td>{{$rm->prix}}</td>
-                <td>{{$rm->is_enable}}</td>
+                <td>{{$rm->price}}</td>
+                @if($rm->is_enable > 0)
+                    <td><span class="badge badge-success">Disponible</span></td>
+                @else
+                    <td><span class="badge badge-danger">Indisponible</span></td>
+                @endif
                 <td>
                     <form action="{{route('rooms.destroy', $rm->id)}}" method="post">
                         <a href="{{route('rooms.show', $rm->id)}}" class="btn btn-info">Show</a>

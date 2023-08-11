@@ -12,7 +12,7 @@ class Room extends Model
     protected $fillable = [
         'image',
         'type',
-        'prix',
+        'price',
         'is_enable'
     ];
 }

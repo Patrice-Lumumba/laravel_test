@@ -47,16 +47,24 @@ class RoomController extends Controller
         $request -> validate([
            'image' => 'required|image|mimes:jpeg,png,jpg,gif;svg|max:2048',
             'type',
-            'prix' => 'required',
+            'price' => 'required',
             'is_enable'
         ]);
 
-        $input = $request->all();
+//        if($request->has('is_enable')){
+//
+//        }else{
+//            //Checkbox not checked
+//        }
 
+        $input = $request->all();
+//
+//        $room = Room::create($request);
+//        $room->is_enable()->attach($request->input('is_enable'));
 
         if($image = $request->file('image')){
             $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." .$image->getClientOriginalExtension();
+            $profileImage = date('Y-m-d') . "." .$image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['image'] = "$profileImage";
 
@@ -86,10 +94,10 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(Room $room)
     {
         //
-        $room = Room::findOrFail($id);
+//        $room = Room::findOrFail($id);
 
         return view('rooms.edit', compact('room'));
     }
@@ -108,7 +116,7 @@ class RoomController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif;svg|max:2048',
             'type',
             'prix' => 'required',
-            'is_enable'
+            'is_enable'=>'',
         ]);
 
         $input = $request->all();
@@ -128,7 +136,7 @@ class RoomController extends Controller
 
         $room->update($input);
 
-        return redirect()->route('room')
+        return redirect()->route('index')
             ->with('success', 'Room detail updated successfully');
     }
 

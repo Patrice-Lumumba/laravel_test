@@ -12,21 +12,21 @@
         <div class="col mb-3">
             <label class="form-label">Image</label>
             <input type="file" name="image" id="image" class="form-control-file">
-            <img src="/image/{{$room->image}}" alt="Room Picture" width="300px">
+            <img src="/image/{{$room->image}}" alt="Room Picture" width="350px">
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <label class="form-label">Type: </label>
 {{--            <input type="text" name="type" class="form-control" placeholder="Title" value="{{ $room->type }}">--}}
             <select class="form-control" name="type">
-                <option value="{{ $room->type }}">Ventilé</option>
+                <option value="{{ $room->type }}" name="type" selected></option>
                 <option value="climatisé">Climatisé</option>
             </select>
         </div>
 
         <div class="col mb-3">
             <label class="form-label">Price</label>
-            <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $room->prix }}">
+            <input type="text" name="prix" class="form-control" placeholder="Price" value="{{ $room->prix }}">
         </div>
     </div>
     <div class="row">
