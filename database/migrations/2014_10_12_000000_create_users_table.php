@@ -15,16 +15,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('email', 100)->nullable();
+            $table->integer('gender_id')->unsigned()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('tel');
-            $table->dateTime('check_in');
-            $table->dateTime('check_out');
-            $table->string('role');
+            $table->string('password', 60)->nullable();
+            $table->string('tel', 60)->nullable();
+            $table->boolean('is_admin')->unsigned()->nullable()->default('0');
+            $table->timestamp('check_in')->useCurrent();
+            $table->timestamp('check_out')->useCurrent();
+
+
             $table->rememberToken();
             $table->timestamps();
+            $table->index(["is_admin"]);
         });
     }
 
