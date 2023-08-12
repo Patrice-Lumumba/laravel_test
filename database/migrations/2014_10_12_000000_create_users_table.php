@@ -22,14 +22,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 60)->nullable();
             $table->string('tel', 60)->nullable();
-            $table->boolean('is_admin')->unsigned()->nullable()->default('0');
+            $table->enum('role',['admin','user'])->default('user');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamp('check_in')->useCurrent();
             $table->timestamp('check_out')->useCurrent();
-
-
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
-            $table->index(["is_admin"]);
         });
     }
 

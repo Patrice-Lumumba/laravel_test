@@ -16,14 +16,29 @@ class UserSeeder extends Seeder
     public function run()
     {
         $entries = [
+
             [
                 'gender_id' => 1,
+                'firstname' => 'Admin',
+                'lastname' => 'AdminDev',
                 'tel' => '6884874154',
-                'firstname' => 'dev',
-                'lastname' => 'admin',
-                'email' => 'admin@example.com',
+                'email' => 'admin@gmail.com',
                 'password' => bcrypt('123'),
-                'is_admin' => 1,
+                'role' => 'admin',
+                'status' => 'active',
+                'check_in' => '2023-07-31',
+                'check_out' => '2023-07-31',
+            ],
+
+            [
+                'gender_id' => 1,
+                'firstname' => 'User',
+                'lastname' => 'Userdev',
+                'tel' => '6859874154',
+                'email'=>'user@gmail.com',
+                'password' => bcrypt('123'),
+                'role' => 'user',
+                'status' => 'active',
                 'check_in' => '2023-07-31',
                 'check_out' => '2023-07-31',
             ],

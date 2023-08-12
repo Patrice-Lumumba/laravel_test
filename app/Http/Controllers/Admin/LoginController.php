@@ -31,7 +31,7 @@
 
             if (Auth::attempt($credentials)) {
 
-                return redirect()->intended('dashboard')
+                return redirect()->intended('admin.index')
 
                     ->withSuccess('Connexion réussie');
 
