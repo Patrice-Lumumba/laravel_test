@@ -10,7 +10,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{asset('assets/css/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/style.css.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/libs/fontawesome/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 </head>
 <body id="page-top">
@@ -35,11 +35,8 @@
 
     </div>
 
-    @include('layouts.footer')
 </div>
-<a href="#page-top" class="scroll-to-top rounded">
-    <i class="fas fa-angle-up"></i>
-</a>
+
 <div class="container">
     <div class="container-fluid container-application">
         <div class="main-content position-relative">
@@ -55,6 +52,9 @@
         </div>
     </div>
 </div>
+
+@include('layouts.footer')
+
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 </body>

@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <div class="col-sm-8 col-lg-4">
+    <div class="col-sm-8 col-lg-5">
         <div class="row justify-content-center mb-3">
             <a class="navbar-brand">
             </a>
@@ -13,7 +13,7 @@
         <div class="card shadow zindex-100 mb-0">
             <div class="card-body px-md-5 py-5">
                 <div class="mb-5">
-                    <h6 class="h3">{{__('Login to your account')}}</h6>
+                    <h6 class="h4 text-center">Connectez-vous à votre compte</h6>
 {{--                    <p class="text-muted mb-0">{{__("Don't have an account? Create your account, it takes less than a minute.")}}</p>--}}
                 </div>
                 <span class="clearfix"></span>
@@ -39,7 +39,7 @@
 
 
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Email')}}</label>
+                        <label class="form-control-label">Adresse Email</label>
                         <div class="input-group input-group-merge input-group-alternative mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
@@ -56,7 +56,7 @@
 
 
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Password')}}</label>
+                        <label class="form-control-label">Mot de passe</label>
                         <div class="input-group input-group-merge input-group-alternative">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -76,20 +76,20 @@
                             <div class="custom-control custom-control-alternative custom-checkbox">
                                 <input class="custom-control-input" id="customCheckRegister" type="checkbox">
                                 <label class="custom-control-label" for="customCheckRegister">
-                                    <span class="text-muted"> {{ _('Ich stimme den AGB zu') }} {{--<a href="#!">{{ _('Privacy Policy') }}</a>--}}</span>
+                                    <span class="text-muted"> J'accepte les termes et conditions {{--<a href="#!">{{ _('Privacy Policy') }}</a>--}}</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="mt-4">
-                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-register">{{ __('login') }}</button>
+                    <div class="mt-4 text-center">
+                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-register">Se connecter</button>
                     </div>
                 </form>
             </div>
-            <div class="card-footer px-md-5"><small style="font-size: 17px !important;">{{__('Sie haben bereits ein Konto?')}}</small>
-                <a href="{{ route('register') }}" class="small font-weight-bold" style="font-size: 17px !important;">{{__('Register')}}</a>
+            <div class="card-footer px-md-5"><small style="font-size: 17px !important;">Vous avez déjà un compte?</small>
+                <a href="{{ route('register') }}" class="small font-weight-bold" style="font-size: 17px !important;">{{__('Enregistrer')}}</a>
             </div>
         </div>
     </div>
