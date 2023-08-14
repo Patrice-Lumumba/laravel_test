@@ -13,8 +13,8 @@
         <div class="card shadow zindex-100 mb-0">
             <div class="card-body px-md-5 py-5">
                 <div class="mb-5">
-                    <h6 class="h3">{{__('Create an account')}}</h6>
-                    <p class="text-muted mb-0">{{__("Don't have an account? Create your account, it takes less than a minute.")}}</p>
+                    <h6 class="h3">Créer un compte</h6>
+                    <p class="text-muted mb-0">Vous n'avez pas de compte? Créez votre compte, cela prend moins d'une minute.</p>
                 </div>
                 <span class="clearfix"></span>
                 @if (session('error'))
@@ -30,14 +30,14 @@
                     @csrf
 
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Username')}}</label>
+                        <label class="form-control-label">Nom</label>
                         <div class="input-group input-group-merge">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
 
-                            <input id="username" type="text" placeholder="{{ __('Username') }}" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" >
-                            @error('username')
+                            <input id="firstname" type="text" placeholder="Nom" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" >
+                            @error('firstname')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -47,12 +47,29 @@
                     </div>
 
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Email')}}</label>
+                        <label class="form-control-label">Prénom</label>
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+
+                            <input id="username" type="text" placeholder="Prénom" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" >
+                            @error('lastname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        <label class="form-control-label">Adresse email</label>
                         <div class="input-group input-group-merge input-group-alternative mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
                             </div>
-                            <input id="email" type="email" placeholder="{{ __('E-Mail') }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+                            <input id="email" type="email" placeholder="Adresse email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -64,12 +81,12 @@
 
 
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Password')}}</label>
+                        <label class="form-control-label">Mot de passe</label>
                         <div class="input-group input-group-merge input-group-alternative">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input id="password"  type="password" placeholder="{{ __('Password') }}" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+                            <input id="password"  type="password" placeholder="Mot de passe" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -82,12 +99,12 @@
                         <div id="password-strength"></div>
                     </div>
                     <div class="form-group required">
-                        <label class="form-control-label">{{__('Confirm password')}}</label>
+                        <label class="form-control-label">Confirnamtion du mot de passe</label>
                         <div class="input-group input-group-merge input-group-alternative">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input id="password-confirm" type="password" class="form-control" placeholder="{{ __('Confirm Password') }}" name="password_confirmation"  autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control" placeholder="Confirnamtion du mot de passe" name="password_confirmation"  autocomplete="new-password">
                         </div>
                     </div>
 
@@ -97,7 +114,7 @@
                     </span>
                     @enderror
 
-                    <div class="row my-4">
+                    <!--<div class="row my-4">
                         <div class="col-12">
                             <div class="custom-control custom-control-alternative custom-checkbox">
                                 <input class="custom-control-input" id="customCheckRegister" type="checkbox">
@@ -106,15 +123,15 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="mt-4">
-                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-register">{{ __("Register") }}</button>
+                        <button id="btn_register_firma" type="submit" class="btn btn-sm btn-primary btn-icon btn-sign">Enregistrer</button>
                     </div>
                 </form>
             </div>
-            <div class="card-footer px-md-5"><small style="font-size: 17px !important;">{{__("Already have an account?")}}</small>
-                <a href="{{ route('login') }}" class="small font-weight-bold" style="font-size: 17px !important;">{{__('Login')}}</a>
+            <div class="card-footer px-md-5"><small style="font-size: 17px !important;">Vous avez déjà un compte?</small>
+                <a href="{{ route('login') }}" class="small font-weight-bold" style="font-size: 17px !important;">Se connecter</a>
             </div>
         </div>
     </div>

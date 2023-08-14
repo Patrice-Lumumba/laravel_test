@@ -19,13 +19,15 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'name.required' => 'Username is required',
+            'firstname.required' => 'Nom est obligatoire',
+            'lastname.required' => 'Prénom est obligatoire',
             'email.required' => 'Email is required',
-            'password.required' => 'Password is required',
+            'password.required' => 'Mot de passe est obligatoire',
             'password.confirmed.required' => 'Password and Confirm Password is required',
         ];
         $request->validate([
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'email' => 'required|string|max:255',
             'password' => ['required', 'confirmed'],
             'password.confirmed' => 'Les deux mots de passes ne coincident pas',
@@ -36,8 +38,10 @@ class RegisterController extends Controller
         $user = new User();
 
         $user->password = $request['password'];
-        $user->email = $request['email'];
-        $user->name = $request['name'];
+        $user->email =  $request['email'];
+        $user->firstname =  $request['firstname'];
+        $user->lastname =  $request['lastname'];
+
 
 //            $user->getRoleNames();
 //
