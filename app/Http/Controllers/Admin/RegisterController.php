@@ -33,6 +33,7 @@
 
             ], $messages);
 
+
             $user = new User();
 
             $user->password = $request['password'];

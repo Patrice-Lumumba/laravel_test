@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
         $entries = [
 
             [
-                'gender_id' => 1,
                 'firstname' => 'Admin',
                 'lastname' => 'AdminDev',
                 'tel' => '6884874154',
@@ -31,7 +30,6 @@ class UserSeeder extends Seeder
             ],
 
             [
-                'gender_id' => 1,
                 'firstname' => 'User',
                 'lastname' => 'Userdev',
                 'tel' => '6859874154',

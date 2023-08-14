@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 
-class RegisterController extends Controller
+class CreateUserController extends Controller
 {
     function index()
     {

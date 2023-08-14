@@ -21,7 +21,7 @@
             <th>Image</th>
             <th>Type</th>
             <th>Price</th>
-            <th>Is_enable</th>
+            <th>Availability</th>
             <th>Action</th>
         </tr>
 
@@ -31,7 +31,12 @@
                 <td><img src="/image/{{$rm->image}}" alt="image" width="100px" height="100px"></td>
                 <td>{{$rm->type}}</td>
                 <td>{{$rm->prix}}</td>
-                <td>{{$rm->is_enable}}</td>
+                @if($rm->is_enable > 0)
+                    <td><span class="badge badge-success">Available</span></td>
+                @else
+                    <td><span class="badge badge-danger">Unavailable</span></td>
+                @endif
+                <td>
                 <td>
                     <form action="{{route('rooms.destroy', $rm->id)}}" method="post">
                         <a href="{{route('rooms.show', $rm->id)}}" class="btn btn-info">Show</a>

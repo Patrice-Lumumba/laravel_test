@@ -17,7 +17,7 @@
             //
             $user = User::orderBy('created_at', 'DESC')->get();
 
-            return view('users.index', compact('user'));
+            return view('admin.users.index', compact('user'));
         }
 
         /**
@@ -28,7 +28,7 @@
         public function create()
         {
             //
-            return view('users.add');
+            return view('admin.users.add');
         }
 
         /**
@@ -42,7 +42,7 @@
             //
             User::create($request->all());
 
-            return redirect()->route('users')->with('success', 'User added successfully');
+            return redirect()->route('users.index')->with('success', 'User added successfully');
             $user = new User();
 
 //            $user->tel = $request['tel'];
@@ -52,7 +52,7 @@
 //             $user->save();
 
             if ($user) {
-                return redirect()->route('users')->with('success', 'User added successfully');
+                return redirect()->route('users.index')->with('success', 'User added successfully');
             }
 
         }
@@ -82,7 +82,7 @@
             //
             $user = User::findOrFail($id);
 
-            return view('users.edit', compact('user'));
+            return view('admin.users.edit', compact('user'));
         }
 
         /**
@@ -99,7 +99,7 @@
 
             $users->update($request->all());
 
-            return redirect()->route('users')->with('success', 'User updated successfully');
+            return redirect()->route('users.index')->with('success', 'User updated successfully');
         }
 
         /**
@@ -115,6 +115,6 @@
 
             $users->delete();
 
-            return redirect()->route('users')->with('success', 'User deleted successfully');
+            return redirect()->route('users.index')->with('success', 'User deleted successfully');
         }
     }
