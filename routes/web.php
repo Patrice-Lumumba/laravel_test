@@ -61,8 +61,8 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::post('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class)->middleware(['auth']);
     Route::resource('rooms', RoomController::class)->middleware(['auth']);
-
-
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
+    Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
 
 
 });
