@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <a href="https://github.com/Prajwal100" target="_blank">Gestion Hotel.</a> {{date('Y')}}</span>
+            <span>Copyright &copy; <a href="https://github.com/Patrice-Lumumba" target="_blank">Patrice.</a> {{date('Y')}}</span>
         </div>
     </div>
 </footer>

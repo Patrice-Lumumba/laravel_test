@@ -60,6 +60,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::post('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class)->middleware(['auth']);
+    Route::resource('rooms', RoomController::class)->middleware(['auth']);
 
 
 

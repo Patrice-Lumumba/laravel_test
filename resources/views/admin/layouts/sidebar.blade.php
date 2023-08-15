@@ -44,7 +44,7 @@
         <div id="categoryCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Options de la chambre :</h6>
-                <a class="collapse-item" href="">Chambres</a>
+                <a class="collapse-item" href="{{route('rooms.index')}}">Chambres</a>
                 <a class="collapse-item" href="">Ajouter une chambre</a>
             </div>
         </div>

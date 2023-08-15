@@ -18,7 +18,7 @@ class RoomController extends Controller
         $room = Room::orderBy('created_at', 'DESC')->get();
         $room = Room::latest()->paginate(5);
 
-        return view('rooms.index', compact('room'))
+        return view('admin.rooms.index', compact('room'))
             ->with('i', (request()->input('page', 1) -1) * 5);
 //        return view('rooms.index', compact('room'));
 
@@ -32,7 +32,7 @@ class RoomController extends Controller
     public function create()
     {
         //
-        return view('rooms.add');
+        return view('admin.rooms.add');
     }
 
     /**
@@ -64,7 +64,7 @@ class RoomController extends Controller
 //
         Room::create($input);
 
-        return redirect()->route('room')
+        return redirect()->route('admin.rooms.index')
             ->with('success','Room created successfully');
     }
 
@@ -77,7 +77,7 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         //
-        return view('rooms.show', compact('room'));
+        return view('admin.rooms.show', compact('room'));
     }
 
     /**
@@ -91,7 +91,7 @@ class RoomController extends Controller
         //
         $room = Room::findOrFail($id);
 
-        return view('rooms.edit', compact('room'));
+        return view('admin.rooms.edit', compact('room'));
     }
 
     /**
@@ -128,7 +128,7 @@ class RoomController extends Controller
 
         $room->update($input);
 
-        return redirect()->route('room')
+        return redirect()->route('admin.rooms.index')
             ->with('success', 'Room detail updated successfully');
     }
 
@@ -143,7 +143,7 @@ class RoomController extends Controller
         //
         $room = Room::findOrFail($id);
         $room->delete();
-        return redirect()->route('room')
+        return redirect()->route('admin.rooms.index')
             ->with('success','Room deleted successfully');
     }
 }

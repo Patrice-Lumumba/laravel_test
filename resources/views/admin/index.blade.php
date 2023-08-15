@@ -21,7 +21,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-sitemap fa-2x text-gray-300"></i>
+                                <i class="fas fa-bed fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-cubes fa-2x text-gray-300"></i>
+                                <i class="fas fa-tractor fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
