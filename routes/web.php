@@ -64,7 +64,6 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
 
-
 });
 
 

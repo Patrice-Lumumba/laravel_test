@@ -12,4 +12,12 @@ class Helper
         return $data;
     }
 
+    public static function getTypeHouse() {
+        $data = [];
+        $data['chambre'] = 'Chambre';
+        $data['appartement'] = 'Appartement';
+
+        return $data;
+    }
+
 }

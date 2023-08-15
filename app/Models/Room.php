@@ -11,8 +11,10 @@ class Room extends Model
 
     protected $fillable = [
         'image',
-        'type',
+        'type_house',
+        'description',
         'prix',
-        'is_enable'
+        'status',
+        'is_featured',
     ];
 }

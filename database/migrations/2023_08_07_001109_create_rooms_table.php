@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('type');
+            $table->string('title');
+            $table->string('description');
+            $table->text('image');
+            $table->string('type_house');
             $table->float('price');
-            $table->boolean('is_enable');
-            $table->string('id_client');
-            $table->timestamps();
+            $table->boolean('is_featured')->deault(false);
+            $table->enum('status',['active','inactive'])->default('inactive');            $table->timestamps();
         });
     }
 

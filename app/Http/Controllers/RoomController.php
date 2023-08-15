@@ -35,13 +35,41 @@ class RoomController extends Controller
         return view('admin.rooms.add');
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'title'=>'string|required',
+            'description'=>'string|nullable',
+            'image'=>'string|required',
+            'is_featured'=>'sometimes|in:1',
+            'status'=>'required|in:active,inactive',
+            'price'=>'required|numeric',
+            'type_house'=>'required',
+        ]);
+
+        $data=$request->all();
+
+        $data['is_featured']=$request->input('is_featured',0);
+
+        $status=Room::create($data);
+        if($status){
+            request()->session()->flash('success','Room Successfully added');
+        }
+        else{
+            request()->session()->flash('error','Please try again!!');
+        }
+        return redirect()->route('admin.rooms.index');
+
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+/*    public function store(Request $request)
     {
         //
         $request -> validate([
@@ -66,7 +94,7 @@ class RoomController extends Controller
 
         return redirect()->route('admin.rooms.index')
             ->with('success','Room created successfully');
-    }
+    }*/
 
     /**
      * Display the specified resource.
