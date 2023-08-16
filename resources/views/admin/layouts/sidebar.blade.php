@@ -16,19 +16,6 @@
             <span>Tableau de bord</span></a>
     </li>
 
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">
-        Banner
-    </div>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Media Manager</span></a>
-    </li>
-
 
     <hr class="sidebar-divider">
 
@@ -58,7 +45,7 @@
         <div id="shippingCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">=Options de la commande :</h6>
-                <a class="collapse-item" href="">Commandes</a>
+                <a class="collapse-item" href="{{route('order.index')}}">Commandes</a>
                 <a class="collapse-item" href="">Ajouter une commande</a>
             </div>
         </div>
@@ -101,18 +88,14 @@
     <div class="sidebar-heading">
        Parametres généraux
     </div>
-    <li class="nav-item">
-        <a class="nav-link" href="">
-            <i class="fas fa-table"></i>
-            <span>Coupon</span></a>
-    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{{route('users.index')}}">
         <i class="fas fa-users"></i>
             <span>Utilisateurs</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{route('settings')}}">
             <i class="fas fa-cog"></i>
             <span>Paramètres</span></a>
     </li>

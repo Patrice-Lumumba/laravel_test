@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -45,36 +46,17 @@ Route::controller(ProductController::class)->prefix('products')->group(function 
     Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
 });
 
-/*Route::controller(UserController::class)->prefix('users')->group(function () {
-    Route::get('', 'index')->name('users');
-    Route::get('create', 'create')->name('users.create');
-    Route::post('store', 'store')->name('users.store');
-    Route::get('show/{id}', 'show')->name('users.show');
-    Route::get('edit/{id}', 'edit')->name('users.edit');
-    Route::put('edit/{id}', 'update')->name('users.update');
-    Route::delete('destroy/{id}', 'destroy')->name('users.destroy');
-});*/
-
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::post('logout', [AdminController::class, 'logout'])->name('logout');
+    Route::get('logout', [AdminController::class, 'logout'])->name('logout');
     Route::resource('users', UserController::class)->middleware(['auth']);
     Route::resource('rooms', RoomController::class)->middleware(['auth']);
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
-
+    Route::resource('/order', OrderController::class);
+    Route::get('settings',  [AdminController::class, 'settings'])->name('settings');
+    Route::post('setting/update',  [AdminController::class, 'settingsUpdate'])->name('settings.update');
 });
 
 
-Route::controller(RoomController::class)->prefix('room')->group(function () {
-    Route::get('', 'index')->name('room');
-    Route::get('create', 'create')->name('rooms.create');
-    Route::post('store', 'store')->name('rooms.store');
-    Route::get('show/{room}', 'show')->name('rooms.show');
-    Route::get('edit/{room}', 'edit')->name('rooms.edit');
-    Route::put('edit/{room}', 'update')->name('rooms.update');
-    Route::delete('destroy/{id}', 'destroy')->name('rooms.destroy');
-});
-
-//Route::get('', 'index')->name('room');

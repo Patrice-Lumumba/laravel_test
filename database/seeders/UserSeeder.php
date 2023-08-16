@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'check_in' => '2023-07-31',
                 'check_out' => '2023-07-31',
+                'created_at' => '2023-07-31',
             ],
 
             [
@@ -39,6 +40,8 @@ class UserSeeder extends Seeder
                 'status' => 'active',
                 'check_in' => '2023-07-31',
                 'check_out' => '2023-07-31',
+                'created_at' => '2023-08-31',
+
             ],
         ];
 

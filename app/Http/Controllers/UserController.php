@@ -15,9 +15,9 @@
         public function index()
         {
             //
-            $user = User::orderBy('created_at', 'DESC')->get();
+            $users = User::orderBy('created_at', 'DESC')->get();
 
-            return view('admin.users.index', compact('user'));
+            return view('admin.users.index', compact('users'));
         }
 
         /**

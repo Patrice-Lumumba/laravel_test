@@ -40,11 +40,10 @@ class RoomController extends Controller
         $this->validate($request,[
             'title'=>'string|required',
             'description'=>'string|nullable',
-            'image'=>'string|required',
+            'type_house'=>'string|required',
             'is_featured'=>'sometimes|in:1',
             'status'=>'required|in:active,inactive',
             'price'=>'required|numeric',
-            'type_house'=>'required',
         ]);
 
         $data=$request->all();
@@ -58,7 +57,7 @@ class RoomController extends Controller
         else{
             request()->session()->flash('error','Please try again!!');
         }
-        return redirect()->route('admin.rooms.index');
+        return redirect()->route('rooms.index');
 
     }
 
@@ -129,35 +128,30 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Room $room)
+    public function update(Request $request, $id)
     {
-        //
-        $request -> validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif;svg|max:2048',
-            'type',
-            'prix' => 'required',
-            'is_enable'
+        $product=Room::findOrFail($id);
+        $this->validate($request,[
+            'title'=>'string|required',
+            'description'=>'string|nullable',
+            'image'=>'string|required',
+            'is_featured'=>'sometimes|in:1',
+            'status'=>'required|in:active,inactive',
+            'price'=>'required|numeric',
+            'type_house'=>'required',
         ]);
 
-        $input = $request->all();
+        $data=$request->all();
+        $data['is_featured']=$request->input('is_featured',0);
 
-        if($image = $request->file('image')){
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." .$image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-
-        }else{
-            unset($input['image']);
+        $status=$product->fill($data)->save();
+        if($status){
+            request()->session()->flash('success','Product Successfully updated');
         }
-
-
-//        $room = Room::findOrFail($id);
-
-        $room->update($input);
-
-        return redirect()->route('admin.rooms.index')
-            ->with('success', 'Room detail updated successfully');
+        else{
+            request()->session()->flash('error','Please try again!!');
+        }
+        return redirect()->route('rooms.index');
     }
 
     /**
@@ -171,7 +165,7 @@ class RoomController extends Controller
         //
         $room = Room::findOrFail($id);
         $room->delete();
-        return redirect()->route('admin.rooms.index')
+        return redirect()->route('rooms.index')
             ->with('success','Room deleted successfully');
     }
 }

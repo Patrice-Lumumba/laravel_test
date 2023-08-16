@@ -1,49 +1,61 @@
 <?php
 
-    namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-    use App\Http\Controllers\Controller;
-    use App\Models\User;
-    use Dotenv\Exception\ValidationException;
-    use Dotenv\Validator;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Dotenv\Exception\ValidationException;
+use Dotenv\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-    class LoginController extends Controller
+class LoginController extends Controller
+{
+
+    public function credentials(Request $request)
     {
-        function index()
-        {
-            return view('auth.login');
-        }
+        return ['email' => $request->email, 'password' => $request->password, 'status' => 'active', 'role' => 'admin'];
+    }
 
-        public function store(Request $request){
-            $messages = [
-                'email.required' => 'Email is required',
-                'password.required' => 'Password is required',
-            ];
-            $request->validate([
-                'email' => 'required|string|max:255',
-                'password' => ['required'],
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
 
-            ], $messages);
+    function index()
+    {
+        return view('auth.login');
+    }
 
-            $credentials = $request->only('email', 'password');
+    public function store(Request $request)
+    {
+        $messages = [
+            'email.required' => 'Email is required',
+            'password.required' => 'Password is required',
+        ];
+        $request->validate([
+            'email' => 'required|string|max:255',
+            'password' => ['required'],
 
-            if (Auth::attempt($credentials)) {
+        ], $messages);
 
-                return redirect()->route('admin')
+        $credentials = $request->only('email', 'password');
 
-                    ->withSuccess('Connexion réussie');
+        if (Auth::attempt($credentials)) {
 
-            }else {
-                return redirect()->route('login')->with('error', __('Email ou mot de passe incorrect'));
-            }
+            return redirect()->route('admin')
+                ->withSuccess('Connexion réussie');
 
-        }
-
-        public function logout(Request $request) {
-            Auth::logout();
-            return redirect('/login');
+        } else {
+            return redirect()->route('login')->with('error', __('Email ou mot de passe incorrect'));
         }
 
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
+}

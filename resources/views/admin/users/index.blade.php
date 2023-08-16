@@ -1,64 +1,135 @@
 @extends('admin.layouts.master')
-
-@section('title', 'List Of Users')
+<?php $title_page = 'Users list'?>
 
 @section('main-content')
-    <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mb-0">List Of Users</h1>
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
-    </div>
-    <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="row">
+            <div class="col-md-12">
+                @include('admin.layouts.notification')
+            </div>
         </div>
-    @endif
-    <table class="table table-hover">
-        <thead class="table-primary">
-        <tr>
-            <th>#</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Check In</th>
-            <th>Check Out</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        @if($user->count() > 0)
-            @foreach($user as $rs)
-                <tr>
-                    <td class="align-middle">{{ $loop->iteration }}</td>
-                    <td class="align-middle">{{ $rs->name }}</td>
-                    <td class="align-middle">{{ $rs->email }}</td>
-                    <td class="align-middle">{{ $rs->tel }}</td>
-                    <td class="align-middle">{{ $rs->check_in }}</td>
-                    <td class="align-middle">{{ $rs->check_out }}</td>
-                    @if( $rs->status == 'active')
-                        <td class="align-middle"><span class="badge badge-success">Active</span></td>
-                    @else
-                        <td class="align-middle"><span class="badge badge-danger">Inactive</span></td>
-                    @endif
-                    <td class="align-middle">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ route('users.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                            <a href="{{ route('users.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                            <form action="{{ route('users.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger m-0">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <td class="text-center" colspan="5">Product not found</td>
-            </tr>
-        @endif
-        </tbody>
-    </table>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
+            <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>S.N.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Photo</th>
+                        <th>Join Date</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->firstname}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                @if($user->photo)
+                                    <img src="{{$user->photo}}" class="img-fluid rounded-circle" style="max-width:50px" alt="{{$user->photo}}">
+                                @else
+                                    <img src="{{asset('admin_assets/img/avatar.png')}}" class="img-fluid rounded-circle" style="max-width:50px" alt="avatar.png">
+                                @endif
+                            </td>
+                            <td>{{(($user->created_at)? $user->created_at->diffForHumans() : '')}}</td>
+                            <td>{{$user->role}}</td>
+                            <td>
+                                @if($user->status=='active')
+                                    <span class="badge badge-success">{{$user->status}}</span>
+                                @else
+                                    <span class="badge badge-warning">{{$user->status}}</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                                <form method="POST" action="{{route('users.destroy',[$user->id])}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('styles')
+    <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <style>
+        div.dataTables_wrapper div.dataTables_paginate{
+            display: none;
+        }
+    </style>
+@endpush
+
+@push('scripts')
+
+    <script src="{{asset('backend/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
+    <script>
+
+        $('#user-dataTable').DataTable( {
+            "columnDefs":[
+                {
+                    "orderable":false,
+                    "targets":[6,7]
+                }
+            ]
+        } );
+
+        // Sweet alert
+
+        function deleteData(id){
+
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.dltBtn').click(function(e){
+                var form=$(this).closest('form');
+                var dataID=$(this).data('id');
+                // alert(dataID);
+                e.preventDefault();
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        } else {
+                            swal("Your data is safe!");
+                        }
+                    });
+            })
+        })
+    </script>
+@endpush

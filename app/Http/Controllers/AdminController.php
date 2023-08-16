@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Settings;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 class AdminController extends Controller
 {
 
@@ -46,11 +47,42 @@ class AdminController extends Controller
         return redirect()->route('admin');
     }
 
+    public function settings(){
+        $data=Settings::first();
+        return view('admin.setting')->with('data',$data);
+    }
 
-    public function logout(Request $request)
-    {
+    public function settingsUpdate(Request $request){
+        // return $request->all();
+        $this->validate($request,[
+            'short_des'=>'required|string',
+            'description'=>'required|string',
+            'photo'=>'required',
+            'logo'=>'required',
+            'address'=>'required|string',
+            'email'=>'required|email',
+            'phone'=>'required|string',
+        ]);
+        $data=$request->all();
+        // return $data;
+        $settings=Settings::first();
+        // return $settings;
+        $status=$settings->fill($data)->save();
+        if($status){
+            request()->session()->flash('success','Setting successfully updated');
+        }
+        else{
+            request()->session()->flash('error','Please try again');
+        }
+        return redirect()->route('admin');
+    }
+
+
+    public function logout(){
+        Session::forget('user');
         Auth::logout();
-        return redirect('/login');
+        request()->session()->flash('success','Logout successfully');
+        return back();
     }
 
 }

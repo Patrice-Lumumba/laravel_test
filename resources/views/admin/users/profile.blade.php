@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title','Admin Profile')
+<?php $title_page = 'Profil user'?>
 
 @section('main-content')
 
@@ -21,15 +21,15 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="image">
+                        <div class="image bg-primary">
                             @if($profile->photo)
                                 <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{$profile->photo}}" alt="profile picture">
                             @else
-                                <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{asset('backend/img/avatar.png')}}" alt="profile picture">
+                                <img class="card-img-top img-fluid roundend-circle mt-4" style="border-radius:50%;height:80px;width:80px;margin:auto;" src="{{asset('admin_assets/img/avatar.png')}}" alt="profile picture">
                             @endif
                         </div>
                         <div class="card-body mt-4 ml-2">
-                            <h5 class="card-title text-left"><small><i class="fas fa-user"></i> {{$profile->name}}</small></h5>
+                            <h5 class="card-title text-left"><small><i class="fas fa-user"></i> {{$profile->firstname}}</small></h5>
                             <p class="card-text text-left"><small><i class="fas fa-envelope"></i> {{$profile->email}}</small></p>
                             <p class="card-text text-left"><small class="text-muted"><i class="fas fa-hammer"></i> {{$profile->role}}</small></p>
                         </div>

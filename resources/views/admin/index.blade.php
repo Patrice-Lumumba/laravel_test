@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','E-SHOP || TABLEAU DE BORD')
+<?php $title_page = 'Tableau de bord'?>
 @section('main-content')
     <div class="container-fluid">
         @include('admin.layouts.notification')
