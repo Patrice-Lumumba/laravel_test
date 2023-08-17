@@ -12,7 +12,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Rooms Lists</h6>
             <a href="{{route('rooms.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip"
-               data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
+               data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add room</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -79,7 +79,7 @@
                         </tbody>
                     </table>
                 @else
-                    <h6 class="text-center">No Products found!!! Please create Product</h6>
+                    <h6 class="text-center">No Room found!!! Please create Room</h6>
                 @endif
             </div>
         </div>

@@ -25,6 +25,18 @@ class User extends Authenticatable
         'password',
         'check_in',
         'check_out',
+        'mat_client',
+        'sexe',
+        'gender',
+        'date_naiss',
+        'lieu_naiss',
+        'numb_identite',
+        'numb_passport',
+        'numb_passport',
+        'name_father',
+        'name_mother',
+        'company',
+        'type_carb_bank',
         'role',
 
     ];

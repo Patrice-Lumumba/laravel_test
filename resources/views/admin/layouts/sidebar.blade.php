@@ -19,9 +19,11 @@
 
     <hr class="sidebar-divider">
 
+
     <div class="sidebar-heading">
         Hotel
     </div>
+
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse" aria-expanded="true" aria-controls="categoryCollapse">
@@ -38,15 +40,30 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse2" aria-expanded="true" aria-controls="categoryCollapse">
+            <i class="fas fa-users"></i>
+            <span>Gestion des clients</span>
+        </a>
+        <div id="categoryCollapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion des clients :</h6>
+                <a class="collapse-item" href="{{route('clients.index')}}">Clients</a>
+                <a class="collapse-item"  href="{{route('clients.create')}}">Ajouter un client</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#shippingCollapse" aria-expanded="true" aria-controls="shippingCollapse">
             <i class="fas fa-truck"></i>
-            <span>Commandes</span>
+            <span>Reservations</span>
         </a>
         <div id="shippingCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">=Options de la commande :</h6>
-                <a class="collapse-item" href="{{route('order.index')}}">Commandes</a>
-                <a class="collapse-item" href="">Ajouter une commande</a>
+                <a class="collapse-item" href="{{route('order.index')}}">Reservations</a>
+                <a class="collapse-item" href="{{route('order.create')}}">Ajouter une reservation</a>
             </div>
         </div>
     </li>

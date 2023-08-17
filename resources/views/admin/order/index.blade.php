@@ -10,6 +10,8 @@
         </div>
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Order Lists</h6>
+            <a href="{{route('order.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip"
+               data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add order</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -17,27 +19,25 @@
                     <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th>S.N.</th>
-                            <th>Order No.</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Quantity</th>
-                            <th>Charge</th>
-                            <th>Total Amount</th>
-                            <th>Status</th>
+                            <th>N_Reservation</th>
+                            <th>N° Chambre</th>
+                            <th>Nom</th>
+                            <th>Etat</th>
+                            <th>Date d'arrivé</th>
+                            <th>Date de depart</th>
+                            <th>Nombre de nuit</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>S.N.</th>
-                            <th>Order No.</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Quantity</th>
-                            <th>Charge</th>
-                            <th>Total Amount</th>
-                            <th>Status</th>
+                            <th>N_Reservation</th>
+                            <th>N° Chambre</th>
+                            <th>Nom</th>
+                            <th>Etat</th>
+                            <th>Date d'arrivé</th>
+                            <th>Date de depart</th>
+                            <th>Nombre de nuit</th>
                             <th>Action</th>
                         </tr>
                         </tfoot>
@@ -91,7 +91,7 @@
                     </table>
                     <span style="float:right">{{$orders->links()}}</span>
                 @else
-                    <h6 class="text-center">No orders found!!! Please order some products</h6>
+                    <h6 class="text-center">No orders found!!! Please order some order</h6>
                 @endif
             </div>
         </div>
