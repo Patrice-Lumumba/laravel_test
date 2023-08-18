@@ -20,12 +20,7 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    public function indexClient()
-    {
-        $clients = User::orderBy('created_at', 'DESC')->get();
 
-        return view('admin.clients.index', compact('clients'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -38,11 +33,6 @@ class UserController extends Controller
         return view('admin.users.add');
     }
 
-    public function clientCreate()
-    {
-        //
-        return view('admin.clients.add');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -50,51 +40,23 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'mat_client' => 'string|required',
-            'sexe' => 'string|required',
-            'city' => 'string|required',
-            'gender' => 'string|required',
-            'date_naiss' => 'string|required',
+        $request->validate([
+            'firstname' => 'string|required',
+            'email' => 'string|required',
+            'tel' => 'string|required',
+            'check_out' => 'string|nullable',
+            'check_in' => 'string|nullable',
+            'role' => 'string|required',
         ]);
 
         User::create($request->all());
 
-        return redirect()->route('users.index')->with('success', 'User added successfully');
-        $user = new User();
-
-//            $user->tel = $request['tel'];
-        $user->email = $request['email'];
-        $user->name = $request['name'];
-
-//             $user->save();
-
-        if ($user) {
-            return redirect()->route('users.index')->with('success', 'User added successfully');
-        }
-
-    }
-
-    public function clientStore(Request $request)
-    {
-        //
-        User::create($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User added successfully');
-        $user = new User();
-
-//            $user->tel = $request['tel'];
-        $user->email = $request['email'];
-        $user->name = $request['name'];
-
-//             $user->save();
-
-        if ($user) {
-            return redirect()->route('users.index')->with('success', 'User added successfully');
-        }
-
+        return redirect()->route('users.index')
+            ->with('success','User created successfully.');
     }
 
     /**

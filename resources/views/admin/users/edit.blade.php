@@ -11,7 +11,7 @@
                 @method('PATCH')
                 <div class="form-group">
                     <label for="inputTitle" class="col-form-label">Name</label>
-                    <input id="inputTitle" type="text" name="name" placeholder="Enter name" value="{{$user->firstname}}"
+                    <input id="inputTitle" type="text" name="firstname" placeholder="Enter name" value="{{$user->firstname}}"
                            class="form-control">
                     @error('name')
                     <span class="text-danger">{{$message}}</span>

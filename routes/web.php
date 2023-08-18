@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -24,12 +23,12 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/',  [FrontendController::class, 'home'])->name('home');
+/*Route::get('/',  [FrontendController::class, 'home'])->name('home');*/
 
 Route::post('logout', [FrontendController::class, 'logout'])->name('logout');
 
-Route::get('/login', [LoginController::class, 'index'])->name("login");
-Route::post('/login', [LoginController::class, 'store'])->middleware(['guest']);
+Route::get('/', [LoginController::class, 'index'])->name("login");
+Route::post('/', [LoginController::class, 'store'])->middleware(['guest']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware(['guest'])
     ->name('register');
@@ -51,10 +50,7 @@ Route::group(['prefix' => '/user'], function () {
 
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::resource('users', UserController::class)->middleware(['auth']);
-    Route::get('/clients', [UserController::class, 'indexClient'])->name('clients.index')->middleware(['auth']);
-    Route::get('/clients/create', [UserController::class, 'clientCreate'])->name('clients.create')->middleware(['auth']);
-    Route::get('/clients/store', [UserController::class, 'clientStore'])->name('clients.store')->middleware(['auth']);
+    Route::resource('users', UserController::class);
     Route::resource('rooms', RoomController::class)->middleware(['auth']);
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');

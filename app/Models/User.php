@@ -1,15 +1,12 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,24 +16,12 @@ class User extends Authenticatable
     protected $fillable = [
         'firstname',
         'lastname',
-        'gender_id',
         'email',
         'tel',
         'password',
-        'check_in',
         'check_out',
-        'mat_client',
-        'sexe',
-        'gender',
-        'date_naiss',
-        'lieu_naiss',
-        'numb_identite',
-        'numb_passport',
-        'numb_passport',
-        'name_father',
-        'name_mother',
-        'company',
-        'type_carb_bank',
+        'check_in',
+        'status',
         'role',
 
     ];
@@ -59,10 +44,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public static function create(array $array)
-    {
-    }
 
     public function setPasswordAttribute($password)
     {

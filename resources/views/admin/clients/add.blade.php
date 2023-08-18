@@ -118,7 +118,7 @@
                             <label class="col-form-label">N°</label>
                             <input type="text" class="form-control" name="numb_card_bank"
                                    placeholder="Numéro de la carte bancaire">
-                        </div
+                        </div>
                     </div>
 
                 </div>

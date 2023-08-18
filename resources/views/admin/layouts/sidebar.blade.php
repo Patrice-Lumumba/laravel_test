@@ -47,8 +47,8 @@
         <div id="categoryCollapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion des clients :</h6>
-                <a class="collapse-item" href="{{route('clients.index')}}">Clients</a>
-                <a class="collapse-item"  href="{{route('clients.create')}}">Ajouter un client</a>
+                <a class="collapse-item" href="{{route('users.index')}}">Clients</a>
+                <a class="collapse-item"  href="{{route('users.create')}}">Ajouter un client</a>
             </div>
         </div>
     </li>

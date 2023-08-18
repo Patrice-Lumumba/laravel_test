@@ -3,40 +3,70 @@
 @section('title', 'Create User')
 
 @section('main-content')
-    <h1 class="mb-0">Add User</h1>
-    <hr />
-    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+    <h4 class="mb-0">Add User</h4>
+    <hr/>
+    <form method="post" action="{{ route('users.store') }}">
         @csrf
-        <div class="row mb-3">
-            <div class="col">
-                <input type="text" name="name" class="form-control" placeholder="Name">
-            </div>
-            <div class="col">
-                <input type="email" name="email" class="form-control" placeholder="Email">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col">
-                <input type="text" name="tel" class="form-control" placeholder="Phone Number">
-            </div>
-            <div class="col">
-                <input type="datetime-local" name="check_in" class="form-control" placeholder="Arrival">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="col-form-label">Nom</label>
+                    <input type="text" class="form-control" name="firstname" placeholder="Entrer votre nom">
+                    @error('firstname')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="col-form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Adresse email">
+                    @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col">
-                <input type="datetime-local" name="check_out" class="form-control" placeholder="Departure">
-            </div>
-            <div class="col">
-                <input type="text" name="role" class="form-control" placeholder="Status">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="col-form-label">Téléphone</label>
+                    <input type="text" class="form-control" name="tel" placeholder="Téléphone">
+                    @error('tel')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label class="col-form-label">Arrival</label>
+                    <input type="date" name="check_out" class="form-control" placeholder="Arrival">
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="col-form-label">Departure</label>
+                    <input type="date" name="check_in" class="form-control" placeholder="Arrival">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="role" class="col-form-label">Status</label>
+                    <select name="role" class="form-control">
+                        <option value="">-----Select Role-----</option>
+                        <option value="admin">Admin</option>
+                        <option value="user" selected>User</option>
+                    </select>
+                    @error('role')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
             </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <button class="btn btn-success" type="submit">Enregistrer</button>
         </div>
     </form>
 @endsection
