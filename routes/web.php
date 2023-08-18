@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -51,6 +52,7 @@ Route::group(['prefix' => '/user'], function () {
 Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('users', UserController::class);
+    Route::resource('clients', ClientController::class);
     Route::resource('rooms', RoomController::class)->middleware(['auth']);
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
     Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');

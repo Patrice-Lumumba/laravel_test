@@ -9,11 +9,23 @@
                 @include('admin.layouts.notification')
             </div>
         </div>
+
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary float-left">Clients List</h6>
             <a href="{{route('clients.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add client</a>
         </div>
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="alert-text">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                    <span class="alert-text">{{ session('error') }}</span>
+                </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -37,7 +49,7 @@
                             <td>{{$c->sexe}}</td>
                             <td>{{$c->date_naiss}}</td>
                             <td>{{$c->email}}</td>
-                            <td>{{$c->role}}</td>
+                            <td>{{$c->phone}}</td>
                             <td>
                                 @if($c->status=='active')
                                     <span class="badge badge-success">{{$c->status}}</span>
@@ -46,9 +58,9 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('users.edit',$c->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                                <a href="{{route('users.edit',$c->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                                <form method="POST" action="{{route('users.destroy',[$c->id])}}">
+                                <a href="{{route('clients.show',$c->id)}}" class="btn btn-primary btn-sm " style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                                <a href="{{route('clients.edit',$c->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                                <form method="POST" action="{{route('clients.destroy',[$c->id])}}">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger btn-sm dltBtn" data-id={{$c->id}} style="height:30px;width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>

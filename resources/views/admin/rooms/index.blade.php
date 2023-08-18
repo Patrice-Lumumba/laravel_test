@@ -15,6 +15,23 @@
                data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add room</a>
         </div>
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="alert-text">{{ session('success') }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span class="alert-text">{{ session('error') }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            @endif
             <div class="table-responsive">
                 @if(count($room)>0)
                     <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">

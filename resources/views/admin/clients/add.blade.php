@@ -3,9 +3,10 @@
 @section('title', 'Create User')
 
 @section('main-content')
+    <?php $generate_mat = 'MAT-' . strtoupper(Str::random(10)); ?>
     <h2 class="mb-0">Ajouter un client</h2>
     <hr/>
-    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('clients.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-md-7">
@@ -14,10 +15,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="col-form-label">Matricule</label>
-                            <input type="number" class="form-control" name="mat_client" value="0">
-                            @error('v')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
+                            <input type="text" class="form-control" name="mat_client" value="<?=$generate_mat?>">
                         </div>
 
                         <div class="col-md-6">
@@ -81,16 +79,23 @@
                     <label class="col-form-label">N° Piece d'identité</label>
                     <input type="text" class="form-control" name="numb_identite"
                            placeholder="Numéro de piece d'identité">
+                    @error('numb_identite')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label">N° Passport</label>
                     <input type="text" class="form-control" name="numb_passport" placeholder="Numéro de passport">
+                    @error('numb_passport')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label">Nom du père</label>
                     <input type="text" class="form-control" name="name_father" placeholder="Numéro du père">
+
                 </div>
 
                 <div class="form-group">
@@ -131,6 +136,9 @@
                 <div class="form-group">
                     <label class="col-form-label">Adresse</label>
                     <input type="text" class="form-control" name="adresse" placeholder="Adresse">
+                    @error('adresse')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -149,11 +157,17 @@
                 <div class="form-group">
                     <label class="col-form-label">Téléphone</label>
                     <input type="text" class="form-control" name="phone" placeholder="Téléphone">
+                    @error('phone')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label class="col-form-label">Email</label>
                     <input type="email" class="form-control" name="email" placeholder="Adresse email">
+                    @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
                 </div>
             </div>
         </div>

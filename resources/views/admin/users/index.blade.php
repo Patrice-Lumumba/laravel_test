@@ -13,7 +13,19 @@
             <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
             <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
         </div>
+
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="alert-text">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                    <span class="alert-text">{{ session('error') }}</span>
+                </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -23,7 +35,7 @@
                         <th>Email</th>
                         <th>Photo</th>
                         <th>Join Date</th>
-                        <th>Role</th>
+                        <th>Téléphone</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -33,7 +45,7 @@
                     @foreach($users as $user)
                         <tr>
                             <td>{{$user->id}}</td>
-                            <td>{{$user->firstname}}</td>
+                            <td><a href="{{route('users.show',$user->id)}}" style="text-decoration: none">{{$user->firstname}}</a></td>
                             <td>{{$user->email}}</td>
                             <td>
                                 @if($user->photo)
@@ -43,7 +55,7 @@
                                 @endif
                             </td>
                             <td>{{(($user->created_at)? $user->created_at->diffForHumans() : '')}}</td>
-                            <td>{{$user->role}}</td>
+                            <td>{{$user->tel}}</td>
                             <td>
                                 @if($user->status=='active')
                                     <span class="badge badge-success">{{$user->status}}</span>
@@ -52,11 +64,12 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{route('users.show',$user->id)}}" class="btn btn-secondary btn-sm ml-3" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-eye"></i></a>
                                 <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                                 <form method="POST" action="{{route('users.destroy',[$user->id])}}">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px;width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                         </tr>
